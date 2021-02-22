@@ -53,8 +53,9 @@ module.exports = function login () {
           res.status(401).send(res.__('Invalid email or password.'))
         }
       }).catch(error => {
-        // next(error)
-        console.log(error)
+        //next(error)
+        console.log(error);
+        console.log("AQUI O ERRO PORRA")
       })
   }
 
