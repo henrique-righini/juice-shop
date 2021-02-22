@@ -267,6 +267,7 @@ app.post('/profile/image/file', uploadToMemory.single('file'), ensureFileIsPasse
 app.post('/profile/image/url', uploadToMemory.single('file'), profileImageUrlUpload())
 app.post('/rest/memories', uploadToDisk.single('image'), ensureFileIsPassed, insecurity.appendUserId(), metrics.observeFileUploadMetricsMiddleware(), memory.addMemory())
 
+<<<<<<< HEAD
 app.use(bodyParser.text({ type: '*/*' }))
 app.use(function jsonParser (req, res, next) {
   req.rawBody = req.body
@@ -277,6 +278,23 @@ app.use(function jsonParser (req, res, next) {
   }
   next()
 })
+=======
+try {
+  app.use(bodyParser.text({ type: '*/*' }))
+  app.use(function jsonParser (req, res, next) {
+    req.rawBody = req.body
+    if (req.headers['content-type'] !== undefined && req.headers['content-type'].indexOf('application/json') > -1) {
+      if (req.body && req.body !== Object(req.body)) { // Expensive workaround for 500 errors during Frisby test run (see #640)
+        req.body = JSON.parse(req.body)
+      }
+    }
+    next()
+  })
+} catch (err) {
+  console.log(err)
+  console.log('peguei o erro')
+}
+>>>>>>> ff727e3c2de83776543fc49bba03abcab9d9ef78
 
 /* HTTP request logging */
 const accessLogStream = require('file-stream-rotator').getStream({
