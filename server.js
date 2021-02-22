@@ -273,6 +273,12 @@ app.use(function jsonParser (req, res, next) {
   if (req.headers['content-type'] !== undefined && req.headers['content-type'].indexOf('application/json') > -1) {
     // if (req.body && req.body !== Object(req.body)) { // Expensive workaround for 500 errors during Frisby test run (see #640)
     req.body = JSON.parse(req.body)
+    const error = new Error('invalid request')
+    res.json({
+        error: {
+          message: "teste"
+        }
+        })
     // }
   }
   next()
