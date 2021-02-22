@@ -26,8 +26,20 @@ module.exports = function login () {
 
   return (req, res, next) => {
     verifyPreLoginChallenges(req)
+     const email = req.body.email
+    if(!validaEmail(emailvalido)){
+        return res.status(401).json({error:'email invalido'})
+    }
+
+
+  function validaEmail(emailvalido) {
+  const emailRegex =  /^([a-zA-Z][^<>\"!@[\]#$%¨&*()~^:;ç,\-´`=+{}º\|/\\?]{1,})@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  return emailRegex.test(String(emailvalido).toLowerCase())
+}
+
     models.sequelize.query(`SELECT * FROM Users WHERE email = '${req.body.email || ''}' AND password = '${insecurity.hash(req.body.password || '')}' AND deletedAt IS NULL`, { model: models.User, plain: true })
       .then((authenticatedUser) => {
+          console.log(authenticatedUser);
         let user = utils.queryResultToJson(authenticatedUser)
         const rememberedEmail = insecurity.userEmailFrom(req)
         if (rememberedEmail && req.body.oauth) {
