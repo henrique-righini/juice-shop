@@ -55,7 +55,7 @@ module.exports = function login () {
       }).catch(error => {
         //next(error)
         console.log(error);
-        console.log("AQUI O ERRO PORRA")
+        console.log("AQUI O ERRO PORRA");
       })
   }
 
