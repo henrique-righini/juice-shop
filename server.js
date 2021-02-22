@@ -280,7 +280,7 @@ app.use(function jsonParser (req, res, next) {
 })
 } catch (err) {
   console.log(err);
-  console.log("peguei o erro")
+  console.log("peguei o erro");
 }
 
 /* HTTP request logging */
