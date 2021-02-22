@@ -267,6 +267,7 @@ app.post('/profile/image/file', uploadToMemory.single('file'), ensureFileIsPasse
 app.post('/profile/image/url', uploadToMemory.single('file'), profileImageUrlUpload())
 app.post('/rest/memories', uploadToDisk.single('image'), ensureFileIsPassed, insecurity.appendUserId(), metrics.observeFileUploadMetricsMiddleware(), memory.addMemory())
 
+try{
 app.use(bodyParser.text({ type: '*/*' }))
 app.use(function jsonParser (req, res, next) {
   req.rawBody = req.body
@@ -277,6 +278,11 @@ app.use(function jsonParser (req, res, next) {
   }
   next()
 })
+} catch (err) {
+  console.log(err);
+  console.log("peguei o erro")
+}
+
 /* HTTP request logging */
 const accessLogStream = require('file-stream-rotator').getStream({
   filename: './logs/access.log',
