@@ -33,7 +33,7 @@ module.exports = function login () {
 
 
   function validaEmail(emailvalido) {
-  const emailRegex =  /^([a-zA-Z][^<>\"!@[\]#$%¨&*()~^:;ç,\-´`=+{}º\|/\\?]{1,})@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  const emailRegex =  /^([a-zA-Z][^<>\"![\]#$%¨&*()~^:;ç,´`=+{}º\|/\\?]{1,})@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
   return emailRegex.test(String(emailvalido).toLowerCase())
 }
 
