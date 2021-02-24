@@ -27,7 +27,7 @@ module.exports = function login () {
   return (req, res, next) => {
     verifyPreLoginChallenges(req)
      const email = req.body.email
-    if(!validaEmail(emailvalido)){
+    if(!validaEmail(email)){
         return res.status(401).json({error:'email invalido'})
     }
 
