@@ -2,6 +2,7 @@ FROM node:12 as installer
 COPY . /juice-shop
 WORKDIR /juice-shop
 RUN npm install --production --unsafe-perm
+RUN npm install -g nodemon
 RUN npm dedupe
 RUN rm -rf frontend/node_modules
 
@@ -30,4 +31,4 @@ RUN mkdir logs && \
     chmod -R g=u ftp/ frontend/dist/ logs/ data/ i18n/
 USER 1001
 EXPOSE 3000
-CMD ["npm", "start"]
+CMD ["npm", "start"] ['nodemon', '/juice-shop']
