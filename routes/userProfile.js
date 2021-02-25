@@ -21,7 +21,8 @@ module.exports = function getUserProfile () {
         models.User.findByPk(loggedInUser.data.id).then(user => {
           let template = buf.toString()
           let username = user.dataValues.username
-          if (username.match(/#\{(.*)\}/) !== null && !utils.disableOnContainerEnv()) {
+ 
+            if (username.match(/#\{(.*)<>\}/) !== null && !utils.disableOnContainerEnv()) {
             req.app.locals.abused_ssti_bug = true
             const code = username.substring(2, username.length - 1)
             try {
@@ -30,7 +31,7 @@ module.exports = function getUserProfile () {
               username = '\\' + username
             }
           } else {
-            username = '\\' + username
+            username = username.replace(/([^\w]+|\s+)/g, '-')
           }
           const theme = themes[config.get('application.theme')]
           template = template.replace(/_username_/g, username)
@@ -59,9 +60,12 @@ module.exports = function getUserProfile () {
         next(new Error('Blocked illegal activity by ' + req.connection.remoteAddress))
       }
     })
-  }
+}
+            
 
   function favicon () {
     return utils.extractFilename(config.get('application.favicon'))
   }
+
 }
+
