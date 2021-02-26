@@ -159,8 +159,14 @@ app.locals.abused_ssrf_bug = false
 app.use(compression())
 
 /* Bludgeon solution for possible CORS problems: Allow everything! */
-app.options('*', cors())
+// app.options('*', cors())
 app.use(cors())
+// app.use(function (req, res, next) {
+// res.header("Access-Control-Allow-Origin", "*");
+// res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS, PATCH');
+// res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+// next();
+// });
 
 /* Security middleware */
 app.use(helmet.noSniff())
