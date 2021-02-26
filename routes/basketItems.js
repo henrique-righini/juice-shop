@@ -34,6 +34,9 @@ module.exports.addBasketItem = function addBasketItem () {
         BasketId: basketIds[basketIds.length - 1],
         quantity: quantities[quantities.length - 1]
       }
+      if(basketIds.length !==1){
+          return res.status(401).json({ error:'Error inserir apenas na sua cesta'})
+      }
       utils.solveIf(challenges.basketManipulateChallenge, () => { return user && basketItem.BasketId && basketItem.BasketId !== 'undefined' && user.bid != basketItem.BasketId }) // eslint-disable-line eqeqeq
 
       const basketItemInstance = models.BasketItem.build(basketItem)
