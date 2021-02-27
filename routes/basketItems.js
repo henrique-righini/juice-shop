@@ -37,8 +37,8 @@ module.exports.addBasketItem = function addBasketItem () {
           utils.solveIf(challenges.basketManipulateChallenge, () => {  return user && basketItem.BasketId && basketItem.BasketId !== 'undefined' && user.bid != basketItem.BasketId } ) // eslint-disable-line eqeqeq
           const basketItemInstance = models.BasketItem.build(basketItem)
            const itemvalido = basketItem    
-         
-               if (Math.sign(req.body.quantity) < 0) { 
+         console.log('Tratamento',itemvalido)
+               if (Math.sign(itemvalido) < 0) { 
                    return res.status(401).json({ error:'valor negativo'} )
                 } 
           basketItemInstance.save().then((basketItem) => { 
