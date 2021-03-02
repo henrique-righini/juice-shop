@@ -16,6 +16,7 @@ const errorhandler = require('errorhandler')
 const cookieParser = require('cookie-parser')
 const serveIndex = require('serve-index')
 const bodyParser = require('body-parser')
+const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors')
 const securityTxt = require('express-security.txt')
 const robots = require('express-robots-txt')
@@ -277,6 +278,18 @@ app.use(function jsonParser (req, res, next) {
   }
   next()
 })
+
+// To remove data, use:
+
+//app.use(mongoSanitize()); 
+
+// Or, to replace prohibited characters with _, use:
+
+//app.use(mongoSanitize({ 
+ // replaceWith: '_'
+//}))
+
+
 /* HTTP request logging */
 const accessLogStream = require('file-stream-rotator').getStream({
   filename: './logs/access.log',
