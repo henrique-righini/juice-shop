@@ -14,6 +14,11 @@ module.exports = function changePassword () {
     const currentPassword = query.current
     const newPassword = query.new
     const repeatPassword = query.repeat
+   
+//correção de problema no troca senha
+   if(!currentPassword || currentPassword === 'undefined')
+      res.status(401).send(res.__('Current password cannot be empty.'))
+   
     if (!newPassword || newPassword === 'undefined') {
       res.status(401).send(res.__('Password cannot be empty.'))
     } else if (newPassword !== repeatPassword) {
