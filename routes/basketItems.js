@@ -75,7 +75,7 @@ module.exports.addBasketItem = function addBasketItem () {
           if (req.body.quantity) { 
             quantityCheck(req, res, next, item.ProductId, req.body.quantity)
              const itemvalido = req.body.quantity     
-        c
+    
                if (Math.sign(req.body.quantity) < 1) { 
                    return res.status(401).json({ error:'quantidade invalida'} )
                 } 
