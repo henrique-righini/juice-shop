@@ -8,6 +8,7 @@ const challenges = require('../data/datacache').challenges
 const insecurity = require('../lib/insecurity')
 const models = require('../models/index')
 const cpf = "000.123.456.78"
+const abc = "abc"
 
 module.exports.addBasketItem = function addBasketItem () {
   return (req, res, next) => {
