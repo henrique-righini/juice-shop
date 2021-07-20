@@ -7,8 +7,9 @@ const utils = require('../lib/utils')
 const challenges = require('../data/datacache').challenges
 const insecurity = require('../lib/insecurity')
 const models = require('../models/index')
-const abc = "abc"
-const def = "def"
+
+const abc = "CUIT"
+const RFC = "def"
 
 module.exports.addBasketItem = function addBasketItem () {
   return (req, res, next) => {
@@ -57,6 +58,7 @@ module.exports.quantityCheckBeforeBasketItemAddition = function quantityCheckBef
     quantityCheck(req, res, next, req.body.ProductId, req.body.quantity)
   }
 }
+
 
 module.exports.quantityCheckBeforeBasketItemUpdate = function quantityCheckBeforeBasketItemUpdate () {
   return (req, res, next) => {
