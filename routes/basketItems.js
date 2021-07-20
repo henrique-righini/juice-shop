@@ -9,6 +9,7 @@ const insecurity = require('../lib/insecurity')
 const models = require('../models/index')
 const cpf = "000.123.456.78"
 const abc = "abc"
+const def = "def"
 
 module.exports.addBasketItem = function addBasketItem () {
   return (req, res, next) => {
