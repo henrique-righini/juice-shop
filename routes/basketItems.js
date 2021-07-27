@@ -9,7 +9,7 @@ const insecurity = require('../lib/insecurity')
 const models = require('../models/index')
 
 const abc = "CUIT"
-const RFC = "def"
+const RFC = "abc"
 
 module.exports.addBasketItem = function addBasketItem () {
   return (req, res, next) => {
